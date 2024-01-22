@@ -125,11 +125,8 @@ export class Runner {
       // Connect to Duplo.
       const duploHost = core.getInput('duplo_host')
       const duploToken = core.getInput('duplo_token')
-      const useBulkApi = core.getBooleanInput('use_bulk_api') ?? false
+      const useBulkApi = core.getBooleanInput('use_bulk_api')
       const ds = new DataSource(new DuploHttpClient(duploHost, duploToken))
-
-      core.info(`core.getBooleanInput('use_bulk_api') : ` +  core.getBooleanInput('use_bulk_api'))
-      core.info(`core.getBooleanInput('use_bulk_api') useBulkApi : ` + useBulkApi)
 
       // Collect tenant information.
       const tenantInput = core.getInput('tenant')
@@ -139,7 +136,7 @@ export class Runner {
 
       // Update all services.
       const updateResults = await this.updateServices(ds, tenant, useBulkApi)
-
+      
       // Check for failures.
       if (updateResults) {
         const failures: string[] = []
@@ -151,6 +148,9 @@ export class Runner {
         if (failures.length)
           throw new Error(`${Runner.ERROR_FAILED_TO_UPDATE}${failures.length > 1 ? 's' : ''}: ${failures.join(', ')}`)
       }
+
+      core.info(`core.getBooleanInput('use_bulk_api') : ` +  core.getBooleanInput('use_bulk_api'))
+      core.info(`core.getBooleanInput('use_bulk_api') useBulkApi : ` + useBulkApi)
     } catch (error) {
       if (verbose) {
         // eslint-disable-next-line no-console
