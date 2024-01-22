@@ -125,8 +125,11 @@ export class Runner {
       // Connect to Duplo.
       const duploHost = core.getInput('duplo_host')
       const duploToken = core.getInput('duplo_token')
-      const useBulkApi = core.getBooleanInput('use_bulk_api') || false
+      const useBulkApi = core.getBooleanInput('use_bulk_api') ?? false
       const ds = new DataSource(new DuploHttpClient(duploHost, duploToken))
+
+      core.info(`core.getBooleanInput('use_bulk_api') : ` +  core.getBooleanInput('use_bulk_api'))
+      core.info(`core.getBooleanInput('use_bulk_api') useBulkApi : ` + useBulkApi)
 
       // Collect tenant information.
       const tenantInput = core.getInput('tenant')
