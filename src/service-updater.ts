@@ -161,7 +161,9 @@ export class ServiceUpdater {
 
     if (this.desired.MergeEnv) {
       env ??= {}
+
       Object.assign(env, this.desired.MergeEnv)
+    
     }
 
     if (this.desired.DeleteEnv) for (const key of this.desired.DeleteEnv) delete env[key]
