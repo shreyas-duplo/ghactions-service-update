@@ -667,8 +667,8 @@ class Runner {
                 const duploToken = core.getInput('duplo_token');
                 const useBulkApi = core.getBooleanInput('use_bulk_api');
                 const ds = new datasource_1.DataSource(new httpclient_1.DuploHttpClient(duploHost, duploToken));
-                core.debug(`1 core.getBooleanInput('use_bulk_api') : ` + core.getBooleanInput('use_bulk_api'));
-                core.debug(`1 core.getBooleanInput('use_bulk_api') useBulkApi : ` + useBulkApi);
+                core.info(`1 core.getBooleanInput('use_bulk_api') : ` + core.getBooleanInput('use_bulk_api'));
+                core.info(`1 core.getBooleanInput('use_bulk_api') useBulkApi : ` + useBulkApi);
                 // Collect tenant information.
                 const tenantInput = core.getInput('tenant');
                 if (!tenantInput)
@@ -689,8 +689,8 @@ class Runner {
                     if (failures.length)
                         throw new Error(`${Runner.ERROR_FAILED_TO_UPDATE}${failures.length > 1 ? 's' : ''}: ${failures.join(', ')}`);
                 }
-                core.debug(`2 core.getBooleanInput('use_bulk_api') : ` + core.getBooleanInput('use_bulk_api'));
-                core.debug(`2 core.getBooleanInput('use_bulk_api') useBulkApi : ` + useBulkApi);
+                core.info(`2 core.getBooleanInput('use_bulk_api') : ` + core.getBooleanInput('use_bulk_api'));
+                core.info(`2 core.getBooleanInput('use_bulk_api') useBulkApi : ` + useBulkApi);
             }
             catch (error) {
                 if (verbose) {
